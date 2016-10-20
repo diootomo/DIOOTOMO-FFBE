@@ -28,39 +28,8 @@
             , messagingSenderId: "145181770247"
         };
         firebase.initializeApp(config);
-        var database = firebase.database();
-
-        function writeCharacter(ffbecharID, name, hp, mp, atk, def, mag, spr, hits, drops, imageURL) {
-            firebase.database().ref('Character/' + ffbecharID).set({
-                charName: name
-                , charHP: hp
-                , charMP: mp
-                , charATK: atk
-                , charDEF: def
-                , charMAG: mag
-                , charSPR: spr
-                , charHITS: hits
-                , charDropChk: drops
-                , charProfile_picture: imageURL
-            });
-        }
-
-        function readCharacter() {
-            var charID = firebase.auth().currentUser.uid;
-            return firebase.database().ref('Character/' + charID).once('value').then(function (snapshot) {
-                var name = snapshot.val().charName;
-                var hp = snapshot.val().charHP;
-                var mp = snapshot.val().charMP;
-                var atk = snapshot.val().charATK;
-                var def = snapshot.val().charDEF;
-                var mag = snapshot.val().charMAG;
-                var spr = snapshot.val().charSPR;
-                var hits = snapshot.val().charHITS;
-                var drops = snapshot.val().charDropChk;
-            });
-        }
     </script>
-    <!-- Use Firebase  <script type="text/javascript" src="DLC/firebase.js"></script>-->
+    <script type="text/javascript" src="CLASS/FFBECharacter.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <!-- Import Bootstrap CSS Liblary -->
     <!--<script src="CLASS/FirebaseDB.js"></script>-->
@@ -153,7 +122,7 @@
                         <label>
                             <input type="checkbox" /> Check me out </label>
                     </div>
-                    <button type="submit" class="btn btn-default" onclick="writeCharacter()">Submit </button>
+                    <button type="submit" class="btn btn-default" onclick="writeUserData(555,666)">Submit </button>
                 </form>
             </div>
         </div>
