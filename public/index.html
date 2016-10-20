@@ -3,12 +3,70 @@
 
 <head>
     <title>FFBE By DIOOTOMO</title>
-    <script src="head.html"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Moblie Interface First -->
+    <meta name="description" content="FFBE By DIOOTOMO">
+    <meta name="keywords" content="ffbe,diootomo">
+    <meta name="author" content="DIOOTOMO">
+    <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+    <!-- Use JQuery Class-->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Use Bootstrap Class-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Use HighCharts JS Liabraly -->
+    <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCBTISYSiWJcmHY09WvjBN84PtnL78pq_I"
+            , authDomain: "diootomo-ad753.firebaseapp.com"
+            , databaseURL: "https://diootomo-ad753.firebaseio.com"
+            , storageBucket: "diootomo-ad753.appspot.com"
+            , messagingSenderId: "145181770247"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+
+        function writeCharacter(ffbecharID, name, hp, mp, atk, def, mag, spr, hits, drops, imageURL) {
+            firebase.database().ref('Character/' + ffbecharID).set({
+                charName: name
+                , charHP: hp
+                , charMP: mp
+                , charATK: atk
+                , charDEF: def
+                , charMAG: mag
+                , charSPR: spr
+                , charHITS: hits
+                , charDropChk: drops
+                , charProfile_picture: imageURL
+            });
+        }
+
+        function readCharacter() {
+            var charID = firebase.auth().currentUser.uid;
+            return firebase.database().ref('Character/' + charID).once('value').then(function (snapshot) {
+                var name = snapshot.val().charName;
+                var hp = snapshot.val().charHP;
+                var mp = snapshot.val().charMP;
+                var atk = snapshot.val().charATK;
+                var def = snapshot.val().charDEF;
+                var mag = snapshot.val().charMAG;
+                var spr = snapshot.val().charSPR;
+                var hits = snapshot.val().charHITS;
+                var drops = snapshot.val().charDropChk;
+            });
+        }
+    </script>
+    <!-- Use Firebase  <script type="text/javascript" src="DLC/firebase.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- Import Bootstrap CSS Liblary -->
+    <!--<script src="CLASS/FirebaseDB.js"></script>-->
 </head>
 
 <body>
-    
     <div class="container-fluid" style="margin-top:20px">
         <div class="row">
             <div class="col-md-12">
@@ -38,10 +96,10 @@
                         <label for="characterName"> Name </label>
                         <input type="text" class="form-control" id="chaName" placeholder="input Name" /> </div>
                     <div class="form-group">
-                     <label for="characterHP"> HP </label>
+                        <label for="characterHP"> HP </label>
                         <input type="number" class="form-control" id="chaHP" placeholder="input HP" /> </div>
                     <div class="form-group">
-                     <label for="characterHP"> MP </label>
+                        <label for="characterHP"> MP </label>
                         <input type="number" class="form-control" id="chaMP" placeholder="input MP" /> </div>
                     <!--
                     <div class="form-group">
@@ -54,8 +112,6 @@
                             <input type="checkbox" /> Check me out </label>
                     </div>
                     -->
-                    
-                    <button type="submit" class="btn btn-default"> Submit </button>
                 </form>
             </div>
             <div class="col-md-4">
@@ -63,20 +119,18 @@
 				 
 			</h3>
                 <form role="form">
-                     <div class="form-group">
-                     <label for="characterATK"> ATK </label>
+                    <div class="form-group">
+                        <label for="characterATK"> ATK </label>
                         <input type="number" class="form-control" id="chaATK" placeholder="input ATK" /> </div>
-                     <div class="form-group">
-                     <label for="characterDEF"> DEF </label>
+                    <div class="form-group">
+                        <label for="characterDEF"> DEF </label>
                         <input type="number" class="form-control" id="chaDEF" placeholder="input DEF" /> </div>
-                     <div class="form-group">
-                     <label for="characterMAG"> MAG </label>
+                    <div class="form-group">
+                        <label for="characterMAG"> MAG </label>
                         <input type="number" class="form-control" id="chaMAG" placeholder="input MAG" /> </div>
-                       <div class="form-group">
-                     <label for="characterSPR"> SPR </label>
+                    <div class="form-group">
+                        <label for="characterSPR"> SPR </label>
                         <input type="number" class="form-control" id="chaSPR" placeholder="input SPR" /> </div>
-                 
-                    <button type="submit" class="btn btn-default"> Submit </button>
                 </form>
             </div>
             <div class="col-md-4">
@@ -84,11 +138,11 @@
 				 
 			</h3>
                 <form role="form">
-                     <div class="form-group">
-                     <label for="characterHIT"> HIT </label>
+                    <div class="form-group">
+                        <label for="characterHIT"> HIT </label>
                         <input type="number" class="form-control" id="chaHIT" placeholder="input HIT" /> </div>
-                   <div class="form-group">
-                     <label for="characterDROP"> DROP Check </label>
+                    <div class="form-group">
+                        <label for="characterDROP"> DROP Check </label>
                         <input type="number" class="form-control" id="chaDROP" placeholder="input DROP" /> </div>
                     <div class="form-group">
                         <label for="exampleInputFile"> File input </label>
@@ -99,7 +153,7 @@
                         <label>
                             <input type="checkbox" /> Check me out </label>
                     </div>
-                    <button type="submit" class="btn btn-default"> Submit </button>
+                    <button type="submit" class="btn btn-default" onclick="writeCharacter()">Submit </button>
                 </form>
             </div>
         </div>
