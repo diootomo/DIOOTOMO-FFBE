@@ -4,3 +4,16 @@
     ".write": true
   }
 }
+/*
+{
+  "rules": {
+    "some_resource": {
+      ".read": "auth.uid === 'my-service-worker'",
+      ".write": false
+    },
+    "another_resource": {
+      ".read": "auth.uid === 'my-service-worker'",
+      ".write": "auth.uid === 'my-service-worker'"
+    }
+  }
+}*/
