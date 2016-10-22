@@ -31,28 +31,30 @@
     </script>
     <script type="text/javascript" src="CLASS/FFBECharacter.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   
     <!-- Import Bootstrap CSS Liblary -->
     <!--<script src="CLASS/FirebaseDB.js"></script>-->
 </head>
 
 <body>
     <div class="container-fluid" style="margin-top:20px">
-        <div class="row">
+        <div class="row" id="navbarMenu">
             <div class="col-md-12">
-                <ul class="nav nav-pills">
-                    <li class="active"> <a href="#">Home</a> </li>
-                    <li> <a href="top5char.html">TOP Unit</a> </li>
-                    <li class="disabled"> <a href="#">Batte</a> </li>
-                    <li class="dropdown pull-right"> <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
-                        <ul class="dropdown-menu">
-                            <li> <a href="#">Action</a> </li>
-                            <li> <a href="#">Another action</a> </li>
-                            <li> <a href="#">Something else here</a> </li>
-                            <li class="divider"> </li>
-                            <li> <a href="#">Separated link</a> </li>
-                        </ul>
-                    </li>
+              <ul class="nav nav-pills">
+            <li class="active"> <a href="#">Home</a> </li>
+            <li> <a href="unit_top.html">TOP Unit</a> </li>
+            <li> <a href="unit_all.html">All Unit</a> </li>
+            <li class="disabled"> <a href="#">Batte</a> </li>
+            <li class="dropdown pull-right"> <a href="#" data-toggle="dropdown" class="dropdown-toggle">Dropdown<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li> <a href="#">Action</a> </li>
+                    <li> <a href="#">Another action</a> </li>
+                    <li> <a href="#">Something else here</a> </li>
+                    <li class="divider"> </li>
+                    <li> <a href="#">Separated link</a> </li>
                 </ul>
+            </li>
+        </ul>
             </div>
         </div>
         <div class="row">
@@ -63,24 +65,19 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="characterName"> Name </label>
-                        <input type="text" class="form-control" id="charName" placeholder="input Name" /> </div>
+                        <input type="text" class="form-control" id="charName" placeholder="input Name" required/> </div>
+                    <button type="button" class="btn btn-warning" id="btnCheckChar" >Check this </button>
+                    <button type="button" class="btn btn-danger" id="btnHasChar" disabled>Have it </button>
+                    <button type="button" class="btn btn-success" id="btnMissChar" disabled>Can Add it </button>
+                    
+                    <hr>
                     <div class="form-group">
                         <label for="characterHP"> HP </label>
-                        <input type="number" class="form-control" id="charHP" placeholder="input HP" value="1234" /> </div>
+                        <input type="number" class="form-control" id="charHP" placeholder="input HP" required/> </div>
                     <div class="form-group">
                         <label for="characterHP"> MP </label>
-                        <input type="number" class="form-control" id="charMP" placeholder="input MP" /> </div>
-                    <!--
-                    <div class="form-group">
-                        <label for="exampleInputFile"> File input </label>
-                        <input type="file" id="exampleInputFile" />
-                        <p class="help-block"> Example block-level help text here. </p>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" /> Check me out </label>
-                    </div>
-                    -->
+                        <input type="number" class="form-control" id="charMP" placeholder="input MP" required/> </div>
+                  
                 </form>
             </div>
             <div class="col-md-4">
@@ -90,16 +87,16 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="characterATK"> ATK </label>
-                        <input type="number" class="form-control" id="charATK" placeholder="input ATK" /> </div>
+                        <input type="number" class="form-control" id="charATK" placeholder="input ATK" required/> </div>
                     <div class="form-group">
                         <label for="characterDEF"> DEF </label>
-                        <input type="number" class="form-control" id="charDEF" placeholder="input DEF" /> </div>
+                        <input type="number" class="form-control" id="charDEF" placeholder="input DEF" required/> </div>
                     <div class="form-group">
                         <label for="characterMAG"> MAG </label>
-                        <input type="number" class="form-control" id="charMAG" placeholder="input MAG" /> </div>
+                        <input type="number" class="form-control" id="charMAG" placeholder="input MAG" required/> </div>
                     <div class="form-group">
                         <label for="characterSPR"> SPR </label>
-                        <input type="number" class="form-control" id="charSPR" placeholder="input SPR" /> </div>
+                        <input type="number" class="form-control" id="charSPR" placeholder="input SPR" required/> </div>
                 </form>
             </div>
             <div class="col-md-4">
@@ -109,10 +106,10 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="characterHITS"> HIT </label>
-                        <input type="number" class="form-control" id="charHITS" placeholder="input HITS" /> </div>
+                        <input type="number" class="form-control" id="charHITS" placeholder="input HITS" required/> </div>
                     <div class="form-group">
                         <label for="characterDROP"> DROP Check </label>
-                        <input type="number" class="form-control" id="charDropCHK" placeholder="input DROP" /> </div>
+                        <input type="number" class="form-control" id="charDropCHK" placeholder="input DROP" required/> </div>
                     <div class="form-group">
                         <label for="exampleInputFile"> File input </label>
                         <input type="file" id="exampleInputFile" />
@@ -122,9 +119,7 @@
                         <label>
                             <input type="checkbox" /> Check me out </label>
                     </div>
-                    
-                    <button type="submit" class="btn btn-default" id="btnSubmitAddChar"  >Submit </button>
-                    
+                    <button type="submit" class="btn btn-default" id="btnSubmitAddChar">Submit </button>
                 </form>
             </div>
         </div>
